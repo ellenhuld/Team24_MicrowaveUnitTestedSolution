@@ -43,7 +43,10 @@ namespace MicrowaveOvenClasses.Boundary
         {
             // One tick has passed
             // Do what I should
-            TimeRemaining -= 1000;
+            // TimeRemaining -= 1000; would do that one tick is almost 17 min 
+            // 1000/60=16,667 wich equals 16 min and 40 sec
+            //TimeRemaining -= 1000;
+            TimeRemaining -= 1;
             TimerTick?.Invoke(this, EventArgs.Empty);
 
             if (TimeRemaining <= 0)
