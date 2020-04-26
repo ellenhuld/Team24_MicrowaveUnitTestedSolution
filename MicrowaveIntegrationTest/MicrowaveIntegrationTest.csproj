@@ -65,6 +65,8 @@
     <Compile Include="IntegrationTestStep5.cs" />
     <Compile Include="IntegrationTestStep6.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Step2_CookController_PowerTube.cs" />
+    <Compile Include="Step5_Button_UserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
