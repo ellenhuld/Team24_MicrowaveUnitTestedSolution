@@ -83,7 +83,7 @@ namespace MicrowaveIntegrationTest
         }
 
         [Test]
-        public void DoorIsClosed_CookingStarted_CancelCooking_LightIsOff() // Ivnen indstilles og sættes igang. Der trykkes på cancel inden programmet er kørt færdigt, lyset slukker.
+        public void DoorIsClosed_CookingStarted_CancelCooking_LightIsOff() // Ovnen indstilles og sættes igang. Der trykkes på cancel inden programmet er kørt færdigt, lyset slukker.
         {
             _powerButton.Press();
             _timeButton.Press();
