@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MicrowaveOvenClasses.Boundary;
+﻿using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
+using System;
 
 namespace MicrowaveIntegrationTest
 {
@@ -15,8 +11,8 @@ namespace MicrowaveIntegrationTest
     class Step2_CookController_PowerTube
     {
 
-        private ICookController _cookController;
-        private IPowerTube _powerTube;
+        private CookController _cookController;
+        private PowerTube _powerTube;
 
         private IUserInterface _fakeUserInterface;
         private ITimer _fakeTimer;
@@ -36,41 +32,45 @@ namespace MicrowaveIntegrationTest
             _cookController = new CookController(_fakeTimer, _fakeDisplay, _powerTube, _fakeUserInterface);
         }
 
+        //Power value must be between 1 and 100
         [TestCase(50, 10)]
         [TestCase(60, 20)]
-        [TestCase(70, 30)]
-        public void StartCookController_PowerTubeIsValid_TurnOnCalledWithPowerOutput(int power, int timer)
+        [TestCase(100, 60)]
+        public void StartCookController_PowerTubeIsValid_TurnOnCalledIsCalledWithPowerOutput(int power, int timer)
         {
             //Arrange
             _cookController.StartCooking(power, timer);
 
             //Assert
-            _fakeOutput.Received(1).OutputLine($"PowerTube works with {power} W");
+            _fakeOutput.Received(1).OutputLine($"PowerTube works with {power}");
 
         }
 
+
+        //Power is above limit (100) and therefore throws an exception
         [TestCase(2000, 10)]
         [TestCase(-1, 10)]
         [TestCase(0, 10)]
-        public void CookControllerPowerTube_PowerTubeAboveLimit_ThrowsException(int power, int timer)
+        public void CookController_PowerTubeAboveLimit_ThrowsExceptionIsCalled(int power, int timer)
         {
-            Assert.Throws<System.ArgumentOutOfRangeException>(() => _powerTube.TurnOn(power));
+            Assert.Throws<ArgumentOutOfRangeException>(() => _powerTube.TurnOn(power));
         }
 
-        [TestCase]
-        public void StopCookController_TurnOffCalled_NoOutput()
+        //The cooking is stopped and therefor no output
+        [Test]
+        public void StopCookController_TurnOffIsCalled_NoOutput()
         {
-            _cookController.StartCooking(50, 50);
+            _cookController.StartCooking(50, 60);
             _cookController.Stop();
 
             _fakeOutput.Received().OutputLine(Arg.Is<string>(str => str.Contains("off")));
-
         }
 
-        [TestCase]
-        public void CookControllerPowerTube_TimerEventExspired_CookControllerStopped()
+        //The event has expired and the cooking is done
+        [Test]
+        public void ExpiredCookController_TimerEventIsExpired_CookControllerStopped()
         {
-            _cookController.StartCooking(50, 50);
+            _cookController.StartCooking(50, 60);
             _fakeTimer.Expired += Raise.EventWith(this, EventArgs.Empty);
 
             _fakeOutput.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("off")));
