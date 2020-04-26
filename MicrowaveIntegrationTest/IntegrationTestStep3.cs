@@ -15,7 +15,7 @@ namespace MicrowaveIntegrationTest
     [TestFixture]
     public class IntegrationTestStep3
     {
-        private CookController _uut;
+        private CookController _cookController;
         private IUserInterface _iUserInterface;
         private ITimer _iTimer;
         private IPowerTube _iPowerTube;
@@ -30,10 +30,15 @@ namespace MicrowaveIntegrationTest
             _iPowerTube = Substitute.For<IPowerTube>();
             _iOutput = Substitute.For<IOutput>();
             _display = new Display(_iOutput);
-            _uut = new CookController(_iTimer, _display, _iPowerTube, _iUserInterface);
+            _cookController = new CookController(_iTimer, _display, _iPowerTube, _iUserInterface);
         }
 
-
+        [Test]
+        public void OnTimerTick_ShowTime() // Tester at display modtager en string der indeholder "Display shows"
+        {
+            _iTimer.TimerTick += Raise.Event();
+            _iOutput.Received().OutputLine(Arg.Is<string>(s => s.Contains("Display shows")));
+        }
 
     }
 }
