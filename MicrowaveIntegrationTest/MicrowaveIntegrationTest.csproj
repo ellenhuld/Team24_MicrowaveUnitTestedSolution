@@ -66,7 +66,6 @@
     <Compile Include="IntegrationTestStep1.cs" />
     <Compile Include="IntegrationTestStep3.cs" />
     <Compile Include="IntegrationTestStep4.cs" />
-    <Compile Include="IntegrationTestStepX.cs" />
     <Compile Include="IntegrationTestStep6.cs" />
     <Compile Include="IntegrationTestStep7.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
