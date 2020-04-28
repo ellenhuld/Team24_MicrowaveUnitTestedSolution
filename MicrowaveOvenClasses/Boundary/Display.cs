@@ -18,6 +18,7 @@ namespace MicrowaveOvenClasses.Boundary
 
         public void ShowPower(int power)
         {
+            //myOutput.OutputLine($"Display shows: {power}");
             myOutput.OutputLine($"Display shows: {power} W");
         }
 
