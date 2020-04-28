@@ -49,9 +49,65 @@ namespace MicrowaveIntegrationTest
         [Test]
         public void TimeButtonIsPressed_DisplayShowsTime()
         {
+            _powerButton.Press();
+            _timeButton.Press();
+            _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("01:00")));
+        }
 
+        [Test]
+        public void StartCancelButtonIsPressed_Display()
+        {
+            _powerButton.Press();
+            _timeButton.Press();
+            _startCancelButton.Press();
+            _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("50 W")));
+            _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("01:00")));
+        }
+
+        [Test]
+        public void StartCancelButton_PowerStateCancel()
+        {
+            _powerButton.Press();
+            _startCancelButton.Press();
+            _output.Received().OutputLine(Arg.Is<string>(s => s.Contains("Display cleared")));
+        }
+
+        [Test]
+        public void StartCancelButton_While_Cooking()
+        {
+            _powerButton.Press();
+            _timeButton.Press();
+            _startCancelButton.Press();
+            _startCancelButton.Press();
+            _output.Received().OutputLine(Arg.Is<string>(s => s.Contains("Display cleared")));
+        }
+
+        [Test]
+        public void DoorOpens_While_In_PowerState()
+        {
+            _powerButton.Press();
+            _door.Open();
+            _output.Received().OutputLine(Arg.Is<string>(s => s.Contains("Display cleared")));
         }
 
 
+        [Test]
+        public void DoorOpens_While_In_SetTime()
+        {
+            _powerButton.Press();
+            _timeButton.Press();
+            _door.Open();
+            _output.Received().OutputLine(Arg.Is<string>(s => s.Contains("Display cleared")));
+        }
+
+        [Test]
+        public void DoorOpens_While_Cooking()
+        {
+            _powerButton.Press();
+            _timeButton.Press();
+            _startCancelButton.Press();
+            _door.Open();
+            _output.Received().OutputLine(Arg.Is<string>(s => s.Contains("Display cleared")));
+        }
     }
 }
