@@ -33,6 +33,7 @@ namespace Microwave.Test.Unit
         [TestCase(-5)]
         [TestCase(-1)]
         [TestCase(0)]
+        [TestCase(49)]
         //[TestCase(101)]
         //[TestCase(150)] // Power er blevet rettet fra 100W til 700W, derfor rettes disse to testcases
         [TestCase(701)]
