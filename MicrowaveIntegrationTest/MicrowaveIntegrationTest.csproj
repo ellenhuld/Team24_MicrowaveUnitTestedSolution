@@ -61,12 +61,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IntegrationTestStep5.cs" />
+    <Compile Include="IntegrationTestStep8.cs" />
     <Compile Include="IntegrationTestStep1.cs" />
     <Compile Include="IntegrationTestStep3.cs" />
     <Compile Include="IntegrationTestStep4.cs" />
+    <Compile Include="IntegrationTestStepX.cs" />
     <Compile Include="IntegrationTestStep6.cs" />
     <Compile Include="IntegrationTestStep7.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IntegrationTestStep2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
