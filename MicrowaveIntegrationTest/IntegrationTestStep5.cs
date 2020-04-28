@@ -80,7 +80,7 @@ namespace MicrowaveIntegrationTest
         }
 
         //The user press the Start-Cancel button and the ligth goes on inside the oven
-        [TestCase]
+        [Test]
         public void StartCancelEvent_MethodCalled_TurnOnIsCalled()
         {
             _powerButton.Press();
@@ -91,7 +91,7 @@ namespace MicrowaveIntegrationTest
         }
 
         //EX.1:The user press the Start-Cangel button during power setup
-        [TestCase]
+        [Test]
         public void StartCancelEvent_MethodCalledTwice_TurnOffIsCalled()
         {
             _powerButton.Press();
