@@ -42,7 +42,7 @@ namespace MicrowaveIntegrationTest
             _cookController.StartCooking(power, timer);
 
             //Assert
-            _fakeOutput.Received(1).OutputLine($"PowerTube works with {power}");
+            _fakeOutput.Received(1).OutputLine($"PowerTube works with {power} W");
 
         }
 
