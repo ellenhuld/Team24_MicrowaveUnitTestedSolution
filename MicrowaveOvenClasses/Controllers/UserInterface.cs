@@ -123,6 +123,7 @@ namespace MicrowaveOvenClasses.Controllers
                     myCooker.Stop();
                     powerLevel = 50;
                     time = 1;
+                    //her har vi tilføjet Clear funktionen til myDisplay
                     myDisplay.Clear();
                     myState = States.DOOROPEN;
                     break;
