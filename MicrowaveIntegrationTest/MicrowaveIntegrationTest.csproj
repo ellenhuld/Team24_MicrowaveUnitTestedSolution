@@ -60,13 +60,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IntegrationTestStep2.cs" />
     <Compile Include="IntegrationTestStep3.cs" />
     <Compile Include="IntegrationTestStep5.cs" />
     <Compile Include="IntegrationTestStep6.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Step2_CookController_PowerTube.cs" />
-    <Compile Include="Step5_Button_UserInterface.cs" />
+    <Compile Include="Step2_CookControle_PowerTube.cs" />
+    <Compile Include="Step4_Door_UserInterface.cs" />
+    <Compile Include="Step5_Buttons_UserInterface.cs" />
+    <Compile Include="Step8_UserInterface_CookControle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
