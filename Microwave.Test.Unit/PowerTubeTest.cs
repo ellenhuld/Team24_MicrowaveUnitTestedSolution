@@ -19,9 +19,10 @@ namespace Microwave.Test.Unit
             uut = new PowerTube(output);
         }
 
-        [TestCase(1)]
+        //[TestCase(1)]
         [TestCase(50)]
-        [TestCase(100)]
+        //[TestCase(100)]
+        [TestCase(700)]
         public void TurnOn_WasOffCorrectPower_CorrectOutput(int power)
         {
             uut.TurnOn(power);

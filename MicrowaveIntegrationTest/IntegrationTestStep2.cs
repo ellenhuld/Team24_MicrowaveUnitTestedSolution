@@ -32,10 +32,11 @@ namespace MicrowaveIntegrationTest
             _cookController = new CookController(_fakeTimer, _fakeDisplay, _powerTube, _fakeUserInterface);
         }
 
-        //Power value must be between 1 and 100
+        //Power value must be between 50 and 700
         [TestCase(50, 10)]
         [TestCase(60, 20)]
         [TestCase(100, 60)]
+        [TestCase(700, 60)]
         public void StartCookController_PowerTubeIsValid_TurnOnCalledIsCalledWithPowerOutput(int power, int timer)
         {
             //Arrange
@@ -47,10 +48,11 @@ namespace MicrowaveIntegrationTest
         }
 
 
-        //Power is above limit (100) and therefore throws an exception
-        [TestCase(2000, 10)]
+        //Power is above (700) or under (50) limit and therefore throws an exception
+        [TestCase(701, 10)]
         [TestCase(-1, 10)]
         [TestCase(0, 10)]
+        [TestCase(49, 10)]
         public void CookController_PowerTubeAboveLimit_ThrowsExceptionIsCalled(int power, int timer)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => _powerTube.TurnOn(power));
