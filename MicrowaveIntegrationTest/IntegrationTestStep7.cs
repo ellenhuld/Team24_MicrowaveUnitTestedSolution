@@ -39,6 +39,18 @@ namespace MicrowaveIntegrationTest
             _display =new Display(_output);
             _userInterface = new UserInterface(_powerButton, _timeButton, _startCancelButton, _door, _display, _light, _cookController);
         }
+        [Test]
+        public void PowerButtonIsPressed_DisplayShowsPower()
+        {
+            _powerButton.Press();
+            _output.Received().OutputLine(Arg.Is<string>(s => s.Contains("50")));
+        }
+
+        [Test]
+        public void TimeButtonIsPressed_DisplayShowsTime()
+        {
+
+        }
 
 
     }
