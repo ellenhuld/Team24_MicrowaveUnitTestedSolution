@@ -45,7 +45,7 @@ namespace MicrowaveIntegrationTest
         {
             _door.Open();
             _fakeLight.Received().TurnOn();
-            ¢
+            
         }
 
         [Test]
