@@ -40,14 +40,14 @@ namespace MicrowaveIntegrationTest
             _userInterface = new UserInterface(_powerButton, _timeButton, _startCancelButton, _door, _display, _light, _cookController);
         }
         [Test]
-        public void PowerButtonIsPressed_DisplayShowsPower()
+        public void PowerButtonIsPressed_DisplayShowsPower() //Der trykkes på powerbutton, display viser 50 W
         {
             _powerButton.Press();
-            _output.Received().OutputLine(Arg.Is<string>(s => s.Contains("50")));
+            _output.Received().OutputLine(Arg.Is<string>(s => s.Contains("50 W")));
         }
 
         [Test]
-        public void TimeButtonIsPressed_DisplayShowsTime()
+        public void TimeButtonIsPressed_DisplayShowsTime() //Tid indstilles, display viser 01 minut og 00 sekunder
         {
             _powerButton.Press();
             _timeButton.Press();
@@ -55,7 +55,7 @@ namespace MicrowaveIntegrationTest
         }
 
         [Test]
-        public void StartCancelButtonIsPressed_Display()
+        public void StartCancelButtonIsPressed_Display() //Ovnen startes og display viser power samt time
         {
             _powerButton.Press();
             _timeButton.Press();
@@ -65,7 +65,7 @@ namespace MicrowaveIntegrationTest
         }
 
         [Test]
-        public void StartCancelButton_PowerStateCancel()
+        public void StartCancelButton_PowerStateCancel() //Power indstilles, der trykkes cancel, display er cleared
         {
             _powerButton.Press();
             _startCancelButton.Press();
@@ -73,7 +73,7 @@ namespace MicrowaveIntegrationTest
         }
 
         [Test]
-        public void StartCancelButton_While_Cooking()
+        public void StartCancelButton_While_Cooking() //Power og tid indstilles, ovn startes, der trykkes cancel, display er cleared
         {
             _powerButton.Press();
             _timeButton.Press();
@@ -83,7 +83,7 @@ namespace MicrowaveIntegrationTest
         }
 
         [Test]
-        public void DoorOpens_While_In_PowerState()
+        public void DoorOpens_While_In_PowerState() //Ved indstilling af power, åbnes døren, display cleares
         {
             _powerButton.Press();
             _door.Open();
@@ -92,7 +92,7 @@ namespace MicrowaveIntegrationTest
 
 
         [Test]
-        public void DoorOpens_While_In_SetTime()
+        public void DoorOpens_While_In_SetTime() //Ved indstilling af time, åbnes døren, display cleares
         {
             _powerButton.Press();
             _timeButton.Press();
@@ -101,7 +101,7 @@ namespace MicrowaveIntegrationTest
         }
 
         [Test]
-        public void DoorOpens_While_Cooking()
+        public void DoorOpens_While_Cooking() //Mens ovnen kører åbnes døren, display cleares
         {
             _powerButton.Press();
             _timeButton.Press();

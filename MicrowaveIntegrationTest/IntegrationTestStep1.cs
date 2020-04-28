@@ -33,8 +33,8 @@ namespace MicrowaveIntegrationTest
 
         // sleeptime higher because it didnt work everytime with exact time
         [TestCase(120, 1100, 1, 59)]
-        [TestCase(6,1100,0,5)] // fail sometimes
-        [TestCase(120, 2500, 1, 58)]// Shouldn't fail (doesn't fail everytime)
+        [TestCase(6,1100,0,5)] 
+        [TestCase(120, 2500, 1, 58)]
         public void TimerTick_On_Display_ShowTime(int time, int sleepTime, int showMin, int showSec )
         {
             int power = 700;
